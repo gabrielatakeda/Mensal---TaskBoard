@@ -1,0 +1,81 @@
+body{ /*essa parte é global, ou seja todas das telas terão essa configuração*/
+       
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0; /*remove as margens padroes da tela, deixando a tela sem barra de rolagem*/
+    color: black;
+    /* background: linear-gradient(135deg, #8e44ad, #e0cae9); */
+    /* background-color: rgb(98, 189, 158); */
+    overflow-x: hidden;
+    /* display: flex;                                                                                                                                                       
+    justify-content: center;    
+    align-items: center; */
+}
+
+#container{ /*essa div e responsavel pela modelagem do background da tela de login, todas as configuracoes necessarias da tela de login*/
+    background: linear-gradient(to right, #49ddd6, #e0cae9);
+    margin: 0;
+    overflow-x: hidden;
+    height: 100vh;
+
+}
+
+#main{ /*bloco principal de login*/
+    margin: 50px auto; /*margem externa do bloco*/
+    background-color: white; /*margem do bloco*/
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /*sombra do bloco*/
+    text-align: center; /*alinhamento dos elementos dentro do bloco*/
+    padding: 20px; /*espacamento interno do bloco*/
+    width: 400px; /*largura maxima do bloco*/
+    /* align-items: center;
+    flex: 1; */
+    
+
+
+}
+
+
+#main h1{
+
+}  
+
+#form-login{
+    display: flex; /*torna os elementos filhos flexiveis*/
+    flex-direction: column;   /*deixando os elementos um abaixo do outro*/
+
+}
+
+#form-login label{
+    text-align: left;    /*alinhamento dos elementos*/
+    margin-bottom: 5px; /*espacamento entre os elementos*/
+
+}
+
+#form-login input{
+    padding: 10px; /*espacamento interno do botao*/
+    border-radius: 4px; /*arredendamento de cantos*/
+    border: 1px solid #ccc; /*borda do input*/
+    margin-bottom: 10px; /*espacamento entre os elementos*/
+}
+
+#form-login button{
+    padding: 10px; /*espacamento interno do botao*/
+    border-radius: 4px; /*arredendamento de cantos*/
+    cursor: pointer; /*muda o cursor ao passar o mouse por cima do botao*/
+    border: none; /*remove a borda do botao*/
+    background: #c87ce6; /*cor de fundo do botao*/
+    color: white; /*cor do texto do botao*/
+    margin-top: 10px; /*espacamento entre os elementos*/
+
+}
+
+#form-login button:hover{
+    background: #8b30af;
+
+}
+
+
+#error{
+    color:red;
+    margin-top: 10px;
+}
