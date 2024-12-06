@@ -2,7 +2,7 @@
 import { API_BASE_URL } from "./apiConfig.js";
 
 const emailInput = document.getElementById ("email"); //puxando do input do html
-const validateForm = document.getElementById ("login-form"); //
+const validateForm = document.getElementById ("form-login"); //
 const error = document.getElementById ("error");
 
 function alert (message) {
@@ -49,6 +49,10 @@ validateForm.addEventListener("submit", async (event) => { // Adiciona um ouvint
             }
             return; // Sai da função se a resposta não for bem-sucedida
         }
+
+        const userData = await response.json();
+        saveLocalStorage("user", { id: userData.Id, email: userData.Email });
+        window.location.href = "boards.html"; // Navega para a tela de home
 
     } catch (error) {
         alert("Aconteceu um erro inesperado, tente novamente."); // Exibe um alerta de erro em caso de exceção durante a requisição
