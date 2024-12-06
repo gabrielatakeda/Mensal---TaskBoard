@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="boards.css">
+    <title>TaskBoard - Boards</title>
 </head>
 <body>
-    
+    <div class="boards-container">
+        <header>
+            <h1>TASKBOARDS</h1>
+            <div class="dropdown"> 
+                <button class="dropbtn">Boards</button> 
+                <div class="dropdown-content"> 
+                    <p id="error" class="hidden"></p>
+                </div> 
+            </div>
+            <div class="dark-mode">
+                <input type="radio" id="light" name="theme" value="light">
+                <label for="light">Claro</label>
+                <input type="radio" id="dark" name="theme" value="dark">
+                <label for="dark">Escuro</label>
+            </div>
+        </header>
+        <footer>
+            <p>© 2024 TaskBoard. Todos os direitos reservados.</p>
+        </footer>
+    </div>
 </body>
+    <script type = "module" src="./boards.js"></script>
 </html>

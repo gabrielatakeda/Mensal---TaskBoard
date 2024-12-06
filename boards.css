@@ -1,0 +1,130 @@
+#boards-container{
+    overflow-x: hidden;
+    height: 100vh;
+    margin: 0%;
+    display: flex;
+}
+
+#boards-container.dark-mode{
+    overflow-x: hidden;
+    height: 100vh;
+    margin: 0%;
+    display: flex;
+}
+
+
+header{
+    display: flex;
+    background-color: #FFFF00;
+    margin: 0;
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px
+}
+
+header.dark-mode{
+    display: flex;
+    background-color: #383838;
+    margin: 0;
+    color: white;
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px
+}
+
+h1{
+    font-size: 28px;
+}
+
+.dark-mode{
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+    gap: 5px;
+    
+
+}
+
+.dark-mode input[type="radio"]{
+    background-color: #FFFF00;
+    cursor: pointer;
+}
+
+/* Estilos para o rodapé */
+footer {
+    background-color: #FFFF00; /* Cor de fundo do rodapé */
+    height: 30px; /* Altura do rodapé */
+    display: flex; /* Flexbox para centralizar o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    position: fixed; /* Fixa o rodapé na tela */
+    bottom: 0; /* Alinha o rodapé na parte inferior */
+    width: 100%; /* Faz o rodapé ocupar toda a largura da tela */
+ /* Cor do texto do rodapé */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Sombra sutil para dar destaque */
+}
+
+
+
+
+/* Estilo para o botão do dropdown */
+.dropbtn {
+    background-color: #DC143C; /* Define a cor de fundo do botão */
+    color: white; /* Define a cor do texto do botão */
+    padding: 10px; /* Define o preenchimento interno do botão */
+    font-size: 16px; /* Define o tamanho da fonte do texto do botão */
+    border: none; /* Remove qualquer borda do botão */
+    border-radius: 8px; /* Adiciona bordas arredondadas ao botão */
+    cursor: pointer; /* Muda o cursor para um ponteiro ao passar o mouse sobre o botão */
+    width: 160px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+/* Container do dropdown */
+.dropdown {
+    position: relative; /* Define a posição do dropdown como relativa para alinhar o conteúdo interno corretamente */
+    display: inline-block; /* Faz o dropdown se comportar como um elemento em linha */
+}
+
+/* Conteúdo do dropdown (inicialmente escondido) */
+.dropdown-content {
+    display: none; /* Esconde o conteúdo do dropdown por padrão */
+    position: absolute; /* Define a posição do conteúdo como absoluta, relativa ao container pai */
+    background-color: #f9f9f9; /* Define a cor de fundo do conteúdo do dropdown */
+    min-width: 160px; /* Define a largura mínima do dropdown */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Adiciona uma sombra ao redor do dropdown para dar profundidade */
+    z-index: 1; /* Coloca o dropdown acima de outros elementos na página */
+    border-radius: 8px;
+}
+
+
+
+/* Links dentro do dropdown */
+.dropdown-content a {
+    color: black; /* Define a cor do texto dos links */
+    padding: 12px 16px; /* Define o preenchimento interno dos links */
+    text-decoration: none; /* Remove a sublinha dos links */
+    display: block; /* Faz os links se comportarem como elementos de bloco, ocupando toda a largura disponível */
+}
+
+/* Efeito ao passar o mouse sobre os links */
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Muda a cor de fundo dos links ao passar o mouse sobre eles */
+}
+
+/* Mostrar o conteúdo do dropdown ao passar o mouse sobre o botão */
+.dropdown:hover .dropdown-content {
+    display: block; /* Mostra o conteúdo do dropdown ao passar o mouse sobre o botão */
+}
+
+/* Alterar a cor do botão quando o dropdown estiver visível */
+.dropdown:hover .dropbtn {
+    background-color: #FF6347; /* Muda a cor de fundo do botão quando o dropdown estiver visível */
+}

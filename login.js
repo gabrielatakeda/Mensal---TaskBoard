@@ -1,24 +1,11 @@
 //LOGIN
 import { API_BASE_URL } from "./apiConfig.js";
+import { saveLocalStorage, getLocalStorage } from "./global.js";
+import { alert } from "./global.js";
 
 const emailInput = document.getElementById ("email"); //puxando do input do html
 const validateForm = document.getElementById ("form-login"); //
 const error = document.getElementById ("error");
-
-function alert (message) {
-    error.textContent = message;
-    error.classList.remove ("hidden");
-}
-
-function saveLocalStorage (key, value) { // Define uma função global chamada 'saveLocalStorage' que recebe duas variáveis: 'key' e 'value'
-    localStorage.setItem(key, JSON.stringify(value)); // Converte o valor para uma string JSON e salva no localStorage com a chave fornecida
-
-};
-
-function getLocalStorage(key){ // Define uma função global chamada 'getLocalStorage' que recebe a variável 'key'
-    const value = localStorage.getItem(key); // Recupera o item do localStorage correspondente à chave fornecida
-    return value ? JSON.parse(value) : null; // Se o valor existir, converte de volta de JSON para um objeto e retorna. Caso contrário, retorna null
-};
 
 function disableButton(button, disable){
     button.disabled = disable;
