@@ -1,81 +1,87 @@
 import { API_BASE_URL } from "./apiConfig.js";
 import { saveLocalStorage, getLocalStorage } from "./global.js";
-import { alert } from "./global.js";
 
-document.addEventListener("DOMContentLoaded", async (evento) => {
+const dropdownButton = document.getElementById("dropdownButton");
+const dropdownMenu = document.getElementById("dropdownMenu");
+const columnsContainer = document.getElementById("columnsContainer"); // Verifique se isso está definido corretamente
 
-    const boards = document.getElementById("dropdown-content");
+async function loadBoard() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/Boards`);
+
+        if (!response.ok) {
+            if (response.status === 422) {
+                const errorData = await response.json();
+                console.error(errorData.Errors[0]);
+            } else {
+                console.error("Aconteceu um erro inesperado, tente novamente.");
+            }
+            return;
+        }
+
+        const boards = await response.json();
+
+        dropdownMenu.innerHTML = ''; // Limpa as opções do menu dropdown antes de adicionar novas
+
+        boards.forEach(board => {
+            const boardLink = document.createElement("a");
+            boardLink.href = "#";
+            boardLink.classList.add("dropdown-item"); // Adiciona a classe para estilização
+            boardLink.textContent = board.Name;
+            boardLink.addEventListener("click", () => {
+                loadColumns(board.Id);
+            });
+            dropdownMenu.appendChild(boardLink);
+        });
+    } catch (error) {
+        console.error("Aconteceu um erro inesperado, tente novamente.");
+    }
+}
+
+async function loadColumns(boardId) {
+    const columnsContainer = document.getElementById("columnsContainer"); // Verifique se isso está definido corretamente
 
     try {
-        const importBoards = await fetch(`${API_BASE_URL}/Boards`); //Faz uma requisição para buscar os dados das boards, await é usado para aguardar a resposta
-        const listBoards = await importBoards.json(); //converte as boards exixentes em um array de objetos
+        const response = await fetch(`${API_BASE_URL}/ColumnByBoardId?BoardId=${boardId}`);
 
-        if (!importBoards.ok) {
-            alert("Erro ao carregar as boards");
-        }else{
-            boards.innerHTML = ''; //Limpa as opções antes de adicionar novas
-            const defaultOption = document.createElement("option"); //Cria um novo elemento, que será a primeira opção do dropDown
-            defaultOption.textContent = "Select Board"; //Define o texto visível para a opção criada
-            boards.appendChild(defaultOption); //Faz aparecer para o usuário
-            listBoards.forEach(board => { //Itera cada board dentro do array, cada board será transformada em uma option, para o usuário escolher
-                 const option = document.createElement("option");
-                 option.value = board.Id; //"Id" seja o identificador único da board
-                 option.textContent = board.Name; //"Name" seja o nome da board
-                 board.appendChild(option);
-            });
+        if (!response.ok) {
+            if (response.status === 422) {
+                const errorData = await response.json(); // Converte a resposta em JSON se o status for 422 (Unprocessable Entity)
+                alert(errorData.Errors[0]); // Exibe o primeiro erro da lista de erros recebida
+            } else {
+                alert("Aconteceu um erro inesperado, tente novamente."); // Exibe um alerta de erro genérico se o status não for 422
+                return;
+            }
         }
-        
-    }catch (error) {
-        console.error("Erro ao fazer a requisição:", error);
-    }finally {  
 
+        const listColumns = await response.json(); // Converte a resposta em um array de objetos
+        columnsContainer.innerHTML = ''; // Limpa as colunas antes de adicionar novas
+
+        listColumns.forEach(column => {
+            const create = document.createElement("div"); // Cria um novo elemento <div> para cada coluna
+            create.className = "column"; // Adiciona uma classe para estilização
+            create.textContent = column.Name; // Define o texto visível com o nome da coluna
+            columnsContainer.appendChild(create); // Adiciona o elemento <div> ao container de colunas
+        });
+    } catch (error) {
+        console.error("Erro ao fazer a requisição:", error); // Loga o erro se a requisição falhar
+    } finally {
+        console.log("Requisição para carregar colunas finalizada.");
     }
-        
-
-});
-
-
-
-
-
-
-// document.addEventListener("DOMContentLoaded", async (e) => { //Vai ser executado assim que a página carregar todo o HTML
-//     const boardsDropdown = document.getElementById("boards-dropdown"); //Armazena em uma variável onde as boards vão aparecer
-
-//     try { //Envolve o código que pode lançar um erro, se ocorre um erro dentro do try, ele será capturado no catch
-//         const response = await fetch(${url_postman}/Boards); //Faz uma requisição para buscar os dados das boards, await é usado para aguardar a resposta
-//         const boardsList = await response.json(); //Converte em objeto
-
-//         if(response.ok){ //Verifica se a resposta é verdadeira, se for verdadeira, será executado esse bloco
-//             boardsDropdown.innerHTML = ''; //Limpa as opções antes de adicionar novas
-//             const defaultOption = document.createElement("option"); //Cria um novo elemento, que será a primeira opção do dropDown
-//             defaultOption.textContent = "Select Board"; //Define o texto visível para a opção criada
-//             boardsDropdown.appendChild(defaultOption); //Faz aparecer para o usuário
-//             boardsList.forEach(board => { //Itera cada board dentro do array, cada board será transformada em uma option, para o usuário escolher
-//                 const option = document.createElement("option");
-//                 option.value = board.Id; //"Id" seja o identificador único da board
-//                 option.textContent = board.Name; //"Name" seja o nome da board
-//                 boardsDropdown.appendChild(option);
-//             });
-//         } else {
-//             console.error("Falha ao obter as boards: ", response.statusText);
-//         }
-
-//     } catch (error) { //Captura qualquer erro que tenha ocorrido dentro do try
-//         console.error("Erro ao fazer a requisição:", error);
-//     }
-// });
-
-
+}
 
 // Alternar entre os modos claro e escuro
 document.querySelectorAll('input[name="theme"]').forEach((elem) => {
     elem.addEventListener("change", function(event) {
         if (event.target.value === "dark") {
             document.body.classList.add("dark-mode");
+            document.querySelector('.header').classList.add("dark-mode");
+            document.querySelector('.footer').classList.add("dark-mode");
             localStorage.setItem('theme', 'dark');
         } else {
             document.body.classList.remove("dark-mode");
+            document.querySelector('.header').classList.remove("dark-mode");
+            document.querySelector('.footer').classList.remove("dark-mode");
             localStorage.setItem('theme', 'light');
         }
     });
@@ -86,8 +92,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme && savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
+        document.querySelector('.header').classList.add('dark-mode');
         document.getElementById('dark').checked = true;
     } else {
         document.getElementById('light').checked = true;
+    }
+});
+
+dropdownButton.addEventListener("click", function(event) {
+    event.stopPropagation();
+    dropdownMenu.classList.toggle("show");
+    if (dropdownMenu.classList.contains("show")) {
+        loadBoard();
     }
 });
