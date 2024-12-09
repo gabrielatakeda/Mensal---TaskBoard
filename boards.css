@@ -37,42 +37,140 @@
 }
 
 #logout{
-    cursor: pointer;
     border-radius: 8px;
-    border: none;
-    background-color: #6c757d;
-    color: white;
+    color: black;
+    font-size: 16px;
     height: 40px;
+    background-color: rgb(9, 230, 255);
+    border: #03afce solid 1px;
+
+    &:hover{
+        background-color: #33eef8;
+        cursor: pointer;
+    }
 }
 
 
-.dropdown-button {
-    background-color: var(--button-background-color);
-    color: var(--button-text-color);
-    border: none;
+
+.columnsContainer{
+    display: flex;
+    
+    justify-content: center;
+    margin: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.column{
+    background-color: rgb(9, 230, 255);
+    margin: 0;
+    color: white;
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+    height: 800px;
+    width: 500px;
+    border-radius: 8px;
+    justify-content: center;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    text-align: justify;
+    display: block;
+    align-items: flex-start;
+    margin-top: 10px;
+    padding: 10px;
+    border: #03afce solid 1px;
+    
+    
+}
+
+.column.dark-mode{
+
+    background-color: #383838;
+    margin: 0;
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+    height: 800px;
+    width: 450px;
     border-radius: 4px;
-    padding: 10px 20px;
-    padding-right: 0;
+    text-align: justify;
+    justify-content: center;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+    padding: 10px;
+
+
+}
+
+.taskContainer {
+    
+    /* margin: 0;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(200, 107, 107, 0.4);
+    height: 150px;
+    margin-top: 150px;
+    border-radius: 8px;
+    justify-content: start;
+    align-items: center;
+    color: black;
+    display: block; */
+}
+
+.task{
+    background-color: rgb(223, 28, 138);
+    border-radius: 8px;
+
+    margin: 0
+}
+
+.dropdown-button {
+    background-color: rgb(9, 230, 255);
+    color: black;
+    border: #03afce solid 1px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
     margin-right: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-style: solid;
-    border-width: 1px;
+    width: 180px;
+    height: 40px;
+}
+
+.dropdown-button.dark-mode{
+    background-color: #383838;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 40px;
 }
 
 .dropdown-button:hover {
-    background-color: var(--menu-hover-background-color);
+    background-color: #33eef8;
 }
 
 #dropdownMenu {
     display: none;
     position: absolute;
     top: 100%;
-    background-color: var(--menu-background-color);
-    color: var(var(--menu-text-color));
+    color: black;
     border-radius: 4px;
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -82,6 +180,9 @@
     border-style: solid;
     border-width: 1px;
     border-top: 0px;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 #dropdownMenu a {
@@ -92,8 +193,8 @@
 }
 
 #dropdownMenu a:hover {
-    background-color: var(--menu-hover-background-color);
     border-radius: 4px;
+    background-color: #33eef8;
 }
 
 #dropdownMenu.show {
